@@ -6,7 +6,7 @@ console.log(spotify_secret_key);
 
 export default function App() {
 	return (
-		<div className="container card-content">
+		<div className="container card__content">
 			<Home />
 		</div>
 	);

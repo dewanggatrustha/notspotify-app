@@ -1,4 +1,4 @@
-.card-wrapper {
+.card__wrapper {
 	width: 250px;
 	text-align: center;
 	font-family: "Poppins", sans-serif;
@@ -8,23 +8,23 @@
 	box-shadow: 0 4px 4px 0 var(--grayblack);
 }
 
-.card-image {
+.card__image {
 	width: 100%;
 	border-radius: 8px;
 }
 
-.card-info {
+.card__info {
 	margin-top: 10px;
 	text-align: left;
 	color: var(--white);
 }
 
-.button-wrapper {
+.button__wrapper {
 	display: flex;
 	justify-content: flex-end;
 }
 
-.card-button {
+.card__button {
 	margin-top: 10px;
 	padding: 8px 12px;
 	font-size: 14px;
@@ -35,6 +35,6 @@
 	cursor: pointer;
 }
 
-.card-button:hover {
+.card__button:hover {
 	background-color: var(--lightgreen);
 }
