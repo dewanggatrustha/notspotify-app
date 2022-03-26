@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-const Card = ({ imagesUrl, title, artist }) => {
+const Card = ({ imagesUrl, title, artist, songUrl }) => {
 	return (
 		<div className="card__wrapper">
 			<img src={imagesUrl} alt={title} className="card__image" />
@@ -10,7 +10,11 @@ const Card = ({ imagesUrl, title, artist }) => {
 				<p>{artist}</p>
 			</div>
 			<div className="button__wrapper">
-				<button className="card__button">Select</button>
+				<button className="card__button">
+					<a href={songUrl} target="_blank" rel="noreferrer">
+						Select
+					</a>
+				</button>
 			</div>
 		</div>
 	);
