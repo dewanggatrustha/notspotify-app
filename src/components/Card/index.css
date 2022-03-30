@@ -5,7 +5,10 @@
 	padding: 16px;
 	border-radius: 8px;
 	background-color: var(--grayblack);
-	box-shadow: 0 4px 4px 0 var(--grayblack);
+}
+
+.card__wrapper:hover {
+	background-color: var(--lightgray);
 }
 
 .card__image {

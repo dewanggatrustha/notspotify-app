@@ -36,8 +36,10 @@ code {
 :root {
 	--white: #ffffff;
 	--black: #121212;
-	--grayblack: #212121;
+	/* --grayblack: #212121; */
+	--grayblack: #181818;
 	--gray: #535353;
+	--lightgray: #282828;
 	--green: #1db954;
 	--lightgreen: #1ed760;
 	--purple: #4623a5;
