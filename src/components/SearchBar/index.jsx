@@ -1,24 +1,20 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import config from "../../lib/config";
 import "./index.css";
 
-class SearchBar extends Component {
-	state = {
-		text: "",
+const SearchBar = ({ accessToken, onSuccess }) => {
+	const [text, setText] = useState("");
+
+	const handleInput = (e) => {
+		setText(e.target.value);
 	};
 
-	handleInput(e) {
-		this.setState({ text: e.target.value });
-	}
-
-	async onSubmit(e) {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const { text } = this.state;
-
-		var requestOptions = {
+		const requestOptions = {
 			headers: {
-				Authorization: "Bearer " + this.props.accessToken,
+				Authorization: "Bearer " + accessToken,
 				"Content-Type": "application/json",
 			},
 		};
@@ -30,30 +26,26 @@ class SearchBar extends Component {
 			).then((data) => data.json());
 
 			const tracks = response.tracks.items;
-			this.props.onSuccess(tracks);
+			onSuccess(tracks);
 		} catch (e) {
 			alert(e);
 		}
+	};
 
-		e.target.blur();
-	}
-
-	render() {
-		return (
-			<form className="search" onSubmit={(e) => this.onSubmit(e)}>
-				<input
-					type="text"
-					placeholder="Search your favorite songs.."
-					className="search__input"
-					required
-					onChange={(e) => this.handleInput(e)}
-				/>
-				<button className="search__button" type="submit">
-					Search
-				</button>
-			</form>
-		);
-	}
-}
+	return (
+		<form className="search" onSubmit={handleSubmit}>
+			<input
+				type="text"
+				placeholder="Search your favorite songs.."
+				className="search__input"
+				required
+				onChange={handleInput}
+			/>
+			<button className="search__button" type="submit">
+				Search
+			</button>
+		</form>
+	);
+};
 
 export default SearchBar;

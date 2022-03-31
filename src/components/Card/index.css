@@ -29,9 +29,12 @@
 }
 
 .card__button {
-	margin-top: 10px;
+	width: 100px;
+	margin-top: 20px;
 	padding: 8px 12px;
+	font-size: 14px;
 	background-color: var(--green);
+	color: var(--white);
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
@@ -41,8 +44,6 @@
 	background-color: var(--lightgreen);
 }
 
-.card__button a {
-	font-size: 14px;
-	text-decoration: none;
-	color: var(--white);
+.card__button-icon {
+	margin-right: 3px;
 }

@@ -1,85 +1,90 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import config from "../lib/config";
 
-class Home extends Component {
-	state = {
-		accessToken: "",
-		isAuthorize: false,
-		tracks: [],
-	};
+const Home = () => {
+	const [accessToken, setAccessToken] = useState("");
+	const [isAuth, setIsAuth] = useState(false);
+	const [tracks, setTracks] = useState([]);
+	const [selectedTracksUri, setSelectedTracksUri] = useState([]);
 
-	getHashParams() {
-		const hashParams = {};
-		const r = /([^&;=]+)=?([^&;]*)/g;
-		const q = window.location.hash.substring(1);
-		let e = r.exec(q);
+	useEffect(() => {
+		const accessToken = new URLSearchParams(window.location.hash).get(
+			"#access_token"
+		);
 
-		while (e) {
-			hashParams[e[1]] = decodeURIComponent(e[2]);
-			e = r.exec(q);
-		}
-		return hashParams;
-	}
+		setAccessToken(accessToken);
+		setIsAuth(accessToken !== null);
+	}, []);
 
-	componentDidMount() {
-		const params = this.getHashParams();
-		const { access_token: accessToken } = params;
-
-		this.setState({ accessToken, isAuthorize: accessToken !== undefined });
-	}
-
-	getSpotifyLinkAuthorize() {
+	const getSpotifyLinkAuth = () => {
 		const state = Date.now().toString();
 		const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 
 		return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
-	}
+	};
 
-	onSuccessSearch(tracks) {
-		this.setState({ tracks });
-	}
+	const filterSelectedTracks = () => {
+		return tracks.filter((track) => selectedTracksUri.includes(track.uri));
+	};
 
-	render() {
-		return (
-			<>
-				{!this.state.isAuthorize && (
-					<main className="auth__content">
-						<p>Login first</p>
-						<button className="auth__button">
-							<a href={this.getSpotifyLinkAuthorize()}>Authorize</a>
-						</button>
-					</main>
-				)}
-
-				{this.state.isAuthorize && (
-					<main className="container" id="home">
-						<SearchBar
-							accessToken={this.state.accessToken}
-							onSuccess={(tracks) => this.onSuccessSearch(tracks)}
-						/>
-
-						<div className="home__content">
-							{this.state.tracks.length === 0 && <p>No tracks</p>}
-
-							<div className="home__cards">
-								{this.state.tracks.map((data) => (
-									<Card
-										key={data.album.id}
-										imagesUrl={data.album.images[0].url}
-										title={data.name}
-										album={data.album.name}
-										artist={data.artists[0].name}
-									/>
-								))}
-							</div>
-						</div>
-					</main>
-				)}
-			</>
+	const onSuccessSearch = (searchTracks) => {
+		const selectedTracks = filterSelectedTracks();
+		const searchDistincTracks = searchTracks.filter(
+			(track) => !selectedTracksUri.includes(track.uri)
 		);
-	}
-}
+
+		setTracks([...selectedTracks, ...searchDistincTracks]);
+	};
+
+	const toggleSelect = (track) => {
+		const uri = track.uri;
+
+		if (selectedTracksUri.includes(uri)) {
+			setSelectedTracksUri(selectedTracksUri.filter((item) => item !== uri));
+		} else {
+			setSelectedTracksUri([...selectedTracksUri, uri]);
+		}
+	};
+
+	return (
+		<>
+			{!isAuth && (
+				<main className="auth__content">
+					<button className="auth__button">
+						<a href={getSpotifyLinkAuth()}>Log In with Spotify</a>
+					</button>
+				</main>
+			)}
+
+			{isAuth && (
+				<main className="container" id="home">
+					<SearchBar
+						accessToken={accessToken}
+						onSuccess={(tracks) => onSuccessSearch(tracks)}
+					/>
+
+					<div className="home__content">
+						{tracks.length === 0 && <p>No tracks</p>}
+
+						<div className="home__cards">
+							{tracks.map((data) => (
+								<Card
+									key={data.id}
+									imagesUrl={data.album.images[0].url}
+									title={data.name}
+									album={data.album.name}
+									artist={data.artists[0].name}
+									toggleSelect={() => toggleSelect(data)}
+								/>
+							))}
+						</div>
+					</div>
+				</main>
+			)}
+		</>
+	);
+};
 
 export default Home;

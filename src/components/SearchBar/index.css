@@ -17,6 +17,10 @@
 	cursor: pointer;
 }
 
+.search__button:hover {
+	background-color: var(--lightgreen);
+}
+
 .search__input {
 	font-size: 14px;
 	padding: 4px 20px;

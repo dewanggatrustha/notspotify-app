@@ -1,5 +1,4 @@
 .auth__content {
-	font-size: 20px;
 	color: var(--white);
 	display: flex;
 	flex-direction: column;
@@ -8,11 +7,13 @@
 }
 
 .auth__button {
+	font-size: 16px;
 	margin-top: 10px;
+	padding: 10px 16px;
+	font-weight: 500;
 	background-color: var(--green);
-	padding: 6px;
 	border: none;
-	border-radius: 8px;
+	border-radius: 26px;
 	cursor: pointer;
 }
 .auth__button a {
