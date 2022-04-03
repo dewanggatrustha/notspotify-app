@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./index.css";
 
-const Card = ({ imagesUrl, title, artist, toggleSelect }) => {
-	const [isSelected, setIsSelected] = useState(false);
+const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
+	const [isSelected, setIsSelected] = useState(select);
 
 	const handleToggleSelect = () => {
 		setIsSelected(!isSelected);

@@ -4,7 +4,7 @@
 	font-family: "Poppins", sans-serif;
 	padding: 16px;
 	border-radius: 8px;
-	background-color: var(--grayblack);
+	background-color: var(--darkgray);
 }
 
 .card__wrapper:hover {

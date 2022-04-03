@@ -19,7 +19,7 @@ body {
 		"Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: linear-gradient(var(--purple) 0%, var(--darkpurple) 100%);
+	background: linear-gradient(var(--darkblue) 0%, var(--lightblack) 20%);
 	background-repeat: no-repeat;
 	min-height: 100vh;
 }
@@ -35,13 +35,15 @@ code {
 
 :root {
 	--white: #ffffff;
-	--black: #121212;
-	/* --grayblack: #212121; */
-	--grayblack: #181818;
+	--white2: #959595;
+	--black: #000000;
+	--lightblack: #121212;
+	--darkgray: #181818;
 	--gray: #535353;
 	--lightgray: #282828;
 	--green: #1db954;
 	--lightgreen: #1ed760;
 	--purple: #4623a5;
 	--darkpurple: #24073f;
+	--darkblue: #22135e;
 }

@@ -3,7 +3,7 @@ import "./App.css";
 
 export default function App() {
 	return (
-		<div className="container card__content">
+		<div className="container">
 			<Home />
 		</div>
 	);

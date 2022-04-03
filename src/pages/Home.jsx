@@ -1,21 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import config from "../lib/config";
+import CreatePlaylistForm from "../components/CreatePlaylistForm";
+import { getUserProfile } from "../lib/spotifyAPI";
 
 const Home = () => {
 	const [accessToken, setAccessToken] = useState("");
 	const [isAuth, setIsAuth] = useState(false);
 	const [tracks, setTracks] = useState([]);
 	const [selectedTracksUri, setSelectedTracksUri] = useState([]);
+	const [selectedTracks, setSelectedTracks] = useState([]);
+	const [user, setUser] = useState({});
 
 	useEffect(() => {
 		const accessToken = new URLSearchParams(window.location.hash).get(
 			"#access_token"
 		);
 
-		setAccessToken(accessToken);
-		setIsAuth(accessToken !== null);
+		if (accessToken !== null) {
+			setAccessToken(accessToken);
+			setIsAuth(accessToken !== null);
+
+			const setUserProfile = async () => {
+				try {
+					const response = await getUserProfile(accessToken);
+
+					setUser(response);
+				} catch (e) {
+					toast.error(e);
+				}
+			};
+
+			setUserProfile();
+		}
 	}, []);
 
 	const getSpotifyLinkAuth = () => {
@@ -25,17 +44,12 @@ const Home = () => {
 		return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
 	};
 
-	const filterSelectedTracks = () => {
-		return tracks.filter((track) => selectedTracksUri.includes(track.uri));
-	};
-
 	const onSuccessSearch = (searchTracks) => {
-		const selectedTracks = filterSelectedTracks();
-		const searchDistincTracks = searchTracks.filter(
-			(track) => !selectedTracksUri.includes(track.uri)
+		const selectedSearchTracks = searchTracks.filter((track) =>
+			selectedTracksUri.includes(track.uri)
 		);
 
-		setTracks([...selectedTracks, ...searchDistincTracks]);
+		setTracks([...new Set([...selectedSearchTracks, ...searchTracks])]);
 	};
 
 	const toggleSelect = (track) => {
@@ -43,29 +57,41 @@ const Home = () => {
 
 		if (selectedTracksUri.includes(uri)) {
 			setSelectedTracksUri(selectedTracksUri.filter((item) => item !== uri));
+			setSelectedTracks(selectedTracks.filter((item) => item.uri !== uri));
 		} else {
 			setSelectedTracksUri([...selectedTracksUri, uri]);
+			setSelectedTracks([...selectedTracks, track]);
 		}
 	};
 
 	return (
-		<>
+		<div className="home">
 			{!isAuth && (
 				<main className="auth__content">
 					<button className="auth__button">
-						<a href={getSpotifyLinkAuth()}>Log In with Spotify</a>
+						<a href={getSpotifyLinkAuth()}>
+							<i class="fa-brands fa-spotify"></i>LOG IN WITH SPOTIFY
+						</a>
 					</button>
 				</main>
 			)}
 
 			{isAuth && (
 				<main className="container" id="home">
+					<CreatePlaylistForm
+						accessToken={accessToken}
+						userId={user.id}
+						uriTracks={selectedTracksUri}
+					/>
+
+					<hr />
+
 					<SearchBar
 						accessToken={accessToken}
 						onSuccess={(tracks) => onSuccessSearch(tracks)}
 					/>
 
-					<div className="home__content">
+					<div className="home__nocards">
 						{tracks.length === 0 && <p>No tracks</p>}
 
 						<div className="home__cards">
@@ -77,13 +103,14 @@ const Home = () => {
 									album={data.album.name}
 									artist={data.artists[0].name}
 									toggleSelect={() => toggleSelect(data)}
+									select={selectedTracksUri.includes(data.uri)}
 								/>
 							))}
 						</div>
 					</div>
 				</main>
 			)}
-		</>
+		</div>
 	);
 };
 
