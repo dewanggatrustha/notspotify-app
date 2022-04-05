@@ -5,29 +5,32 @@ import SearchBar from "../components/SearchBar";
 import config from "../lib/config";
 import CreatePlaylistForm from "../components/CreatePlaylistForm";
 import { getUserProfile } from "../lib/spotifyAPI";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../authSlice";
 
 const Home = () => {
-	const [accessToken, setAccessToken] = useState("");
-	const [isAuth, setIsAuth] = useState(false);
 	const [tracks, setTracks] = useState([]);
 	const [selectedTracksUri, setSelectedTracksUri] = useState([]);
 	const [selectedTracks, setSelectedTracks] = useState([]);
-	const [user, setUser] = useState({});
+	const isAuth = useSelector((state) => state.auth.isLogin);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const accessToken = new URLSearchParams(window.location.hash).get(
+		const accessTokenParams = new URLSearchParams(window.location.hash).get(
 			"#access_token"
 		);
 
-		if (accessToken !== null) {
-			setAccessToken(accessToken);
-			setIsAuth(accessToken !== null);
-
+		if (accessTokenParams !== null) {
 			const setUserProfile = async () => {
 				try {
-					const response = await getUserProfile(accessToken);
-
-					setUser(response);
+					const response = await getUserProfile(accessTokenParams);
+					dispatch(
+						login({
+							accessToken: accessTokenParams,
+							user: response,
+						})
+					);
 				} catch (e) {
 					toast.error(e);
 				}
@@ -78,18 +81,11 @@ const Home = () => {
 
 			{isAuth && (
 				<main className="container" id="home">
-					<CreatePlaylistForm
-						accessToken={accessToken}
-						userId={user.id}
-						uriTracks={selectedTracksUri}
-					/>
+					<CreatePlaylistForm uriTracks={selectedTracksUri} />
 
 					<hr />
 
-					<SearchBar
-						accessToken={accessToken}
-						onSuccess={(tracks) => onSuccessSearch(tracks)}
-					/>
+					<SearchBar onSuccess={(tracks) => onSuccessSearch(tracks)} />
 
 					<div className="home__nocards">
 						{tracks.length === 0 && <p>No tracks</p>}

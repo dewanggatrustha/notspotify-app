@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { searchTrack } from "../../lib/spotifyAPI";
 import "./index.css";
 
-const SearchBar = ({ accessToken, onSuccess }) => {
+const SearchBar = ({ onSuccess }) => {
+	const accessToken = useSelector((state) => state.auth.accessToken);
+
 	const [text, setText] = useState("");
 
 	const handleInput = (e) => {

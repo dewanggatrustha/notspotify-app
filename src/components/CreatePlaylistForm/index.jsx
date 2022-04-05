@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addTracksToPlaylist, createPlaylist } from "../../lib/spotifyAPI";
 import "./index.css";
 
-export default function CreatePlaylistForm({ accessToken, userId, uriTracks }) {
+export default function CreatePlaylistForm({ uriTracks }) {
+	const accessToken = useSelector((state) => state.auth.accessToken);
+	const userId = useSelector((state) => state.auth.user.id);
+
 	const [form, setForm] = useState({
 		title: "",
 		description: "",
