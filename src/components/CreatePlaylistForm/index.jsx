@@ -70,7 +70,7 @@ export default function CreatePlaylistForm({ uriTracks }) {
 
 	return (
 		<div className="form">
-			<div>
+			<div className="form__wrapper">
 				<h2>Create Playlist</h2>
 
 				<form className="form-playlist" onSubmit={handleSubmit}>
