@@ -7,6 +7,7 @@ import {
 import { useSelector } from "react-redux";
 import CreatePlaylist from "./pages/Playlist/CreatePlaylist";
 import LoginPage from "./pages/Main/LoginPage";
+import SideBar from "./components/SideBar";
 import "./App.css";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
 	return (
 		<div className="container">
 			<Router>
+				<SideBar />
 				<Switch>
 					<Route path="/create-playlist">
 						{token !== "" ? <CreatePlaylist /> : <Redirect to="/" />}

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import config from "../../lib/config";
 import { getUserProfile } from "../../lib/spotifyAPI";
-import { login } from "../../authSlice";
+import { login } from "../../Redux/authSlice";
 import "./LoginPage.css";
 
 const LoginPage = () => {

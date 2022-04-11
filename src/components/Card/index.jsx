@@ -22,9 +22,9 @@ const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
 				<button className="card__button" onClick={handleToggleSelect}>
 					<span className="card__button-icon">
 						{isSelected ? (
-							<i class="fa-solid fa-trash-can"></i>
+							<i className="fa-solid fa-trash-can"></i>
 						) : (
-							<i class="fa-solid fa-plus"></i>
+							<i className="fa-solid fa-plus"></i>
 						)}
 					</span>
 					{isSelected ? "Deselect" : "Select"}
