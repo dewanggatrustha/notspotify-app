@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { addTracksToPlaylist, createPlaylist } from "../../lib/spotifyAPI";
-import "./index.css";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { addTracksToPlaylist, createPlaylist } from '../../lib/spotifyAPI';
+import './index.css';
 
 export default function CreatePlaylistForm({ uriTracks }) {
 	const accessToken = useSelector((state) => state.auth.accessToken);
 	const userId = useSelector((state) => state.auth.user.id);
 
 	const [form, setForm] = useState({
-		title: "",
-		description: "",
+		title: '',
+		description: '',
 	});
 
 	const [errorForm, setErrorForm] = useState({
-		title: "",
-		description: "",
+		title: '',
+		description: '',
 	});
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 
 		setForm({ ...form, [name]: value });
-		setErrorForm({ ...errorForm, [name]: "" });
+		setErrorForm({ ...errorForm, [name]: '' });
 	};
 
 	const validateForm = () => {
@@ -31,7 +31,7 @@ export default function CreatePlaylistForm({ uriTracks }) {
 		if (form.title.length < 5) {
 			setErrorForm({
 				...errorForm,
-				title: "Title must be at least 10 characters long",
+				title: 'Title must be at least 10 characters long',
 			});
 			isValid = false;
 		}
@@ -59,9 +59,9 @@ export default function CreatePlaylistForm({ uriTracks }) {
 					uriTracks
 				);
 
-				toast.success("Playlist created successfully");
+				toast.success('Playlist created successfully');
 
-				setForm({ title: "", description: "" });
+				setForm({ title: '', description: '' });
 			} catch (error) {
 				toast.error(error);
 			}

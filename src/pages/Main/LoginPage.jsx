@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import config from "../../lib/config";
 import { getUserProfile } from "../../lib/spotifyAPI";
-import { login } from "../../authSlice";
+import { login } from "../../Redux/authSlice";
 import "./LoginPage.css";
 
 const LoginPage = () => {
@@ -45,7 +45,7 @@ const LoginPage = () => {
 			<div className="auth__content">
 				<button className="auth__button">
 					<a href={getSpotifyLinkAuth()}>
-						<i class="fa-brands fa-spotify"></i>LOG IN WITH SPOTIFY
+						<i className="fa-brands fa-spotify"></i>LOG IN WITH SPOTIFY
 					</a>
 				</button>
 			</div>
