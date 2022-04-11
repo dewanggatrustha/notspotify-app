@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Card from '../../components/Card';
-import SearchBar from '../../components/SearchBar';
-import CreatePlaylistForm from '../../components/CreatePlaylistForm';
-import './CreatePlaylist.css';
+import React, { useState } from "react";
+import Card from "../../components/Card";
+import SearchBar from "../../components/SearchBar";
+import CreatePlaylistForm from "../../components/CreatePlaylistForm";
+import "./CreatePlaylist.css";
 
 const CreatePlaylist = () => {
 	const [tracks, setTracks] = useState([]);
