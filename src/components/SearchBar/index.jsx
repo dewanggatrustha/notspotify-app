@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { searchTrack } from "../../lib/spotifyAPI";
-import "./index.css";
+import style from "./style.module.css";
 
 const SearchBar = ({ onSuccess }) => {
 	const accessToken = useSelector((state) => state.auth.accessToken);
@@ -27,16 +27,16 @@ const SearchBar = ({ onSuccess }) => {
 	};
 
 	return (
-		<form className="search" onSubmit={handleSubmit}>
+		<form className={style.search} onSubmit={handleSubmit}>
 			<input
 				type="text"
 				placeholder="Search your favorite songs.."
-				className="search__input"
+				className={style.search__input}
 				required
 				onChange={handleInput}
 			/>
-			<button className="search__button" type="submit">
-				Search
+			<button className={style.search__button} type="submit">
+				<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</form>
 	);

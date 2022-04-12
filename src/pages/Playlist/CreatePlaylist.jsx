@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "../../components/Card";
 import SearchBar from "../../components/SearchBar";
 import CreatePlaylistForm from "../../components/CreatePlaylistForm";
-import "./CreatePlaylist.css";
+import style from "./style.module.css";
 
 const CreatePlaylist = () => {
 	const [tracks, setTracks] = useState([]);
@@ -37,10 +37,10 @@ const CreatePlaylist = () => {
 
 				<SearchBar onSuccess={(tracks) => onSuccessSearch(tracks)} />
 
-				<div className="home__nocards">
+				<div className={style.home__nocards}>
 					{tracks.length === 0 && <p>No tracks</p>}
 
-					<div className="home__cards">
+					<div className={style.home__cards}>
 						{tracks.map((data) => (
 							<Card
 								key={data.id}

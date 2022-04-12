@@ -11,7 +11,7 @@
 	margin-bottom: 20px;
 }
 
-.form-playlist__input {
+.form__playlist__input {
 	font-size: 14px;
 	padding: 4px 20px;
 	min-height: 40px;
@@ -22,11 +22,11 @@
 	margin-bottom: 20px;
 }
 
-.form-playlist__input:focus {
+.form__playlist__input:focus {
 	border: 1px solid var(--green);
 }
 
-.form-playlist__button {
+.form__playlist__button {
 	background-color: var(--green);
 	font-size: 14px;
 	color: var(--white);
@@ -37,6 +37,6 @@
 	cursor: pointer;
 }
 
-.form-playlist__button:hover {
+.form__playlist__button:hover {
 	background-color: var(--lightgreen);
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./index.css";
+import style from "./style.module.css";
 
 const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
 	const [isSelected, setIsSelected] = useState(select);
@@ -10,17 +10,17 @@ const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
 	};
 
 	return (
-		<div className="card__wrapper">
-			<div className="card__images">
-				<img src={imagesUrl} alt={title} className="card__image" />
+		<div className={style.card__wrapper}>
+			<div className={style.card__images}>
+				<img src={imagesUrl} alt={title} className={style.card__image} />
 			</div>
-			<div className="card__info">
+			<div className={style.card__info}>
 				<h5>{title}</h5>
 				<p>{artist}</p>
 			</div>
-			<div className="button__wrapper">
-				<button className="card__button" onClick={handleToggleSelect}>
-					<span className="card__button-icon">
+			<div className={style.button__wrapper}>
+				<button className={style.card__button} onClick={handleToggleSelect}>
+					<span className={style.card__button__icon}>
 						{isSelected ? (
 							<i className="fa-solid fa-trash-can"></i>
 						) : (

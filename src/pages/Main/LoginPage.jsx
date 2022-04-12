@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import config from "../../lib/config";
 import { getUserProfile } from "../../lib/spotifyAPI";
 import { login } from "../../Redux/authSlice";
-import "./LoginPage.css";
+import style from "./style.module.css";
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
@@ -42,8 +42,8 @@ const LoginPage = () => {
 
 	return (
 		<div className="home">
-			<div className="auth__content">
-				<button className="auth__button">
+			<div className={style.auth__content}>
+				<button className={style.auth__button}>
 					<a href={getSpotifyLinkAuth()}>
 						<i class="fa-brands fa-spotify"></i>LOG IN WITH SPOTIFY
 					</a>

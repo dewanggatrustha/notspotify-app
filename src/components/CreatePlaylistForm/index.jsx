@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addTracksToPlaylist, createPlaylist } from "../../lib/spotifyAPI";
-import "./index.css";
+import style from "./style.module.css";
 
 export default function CreatePlaylistForm({ uriTracks }) {
 	const accessToken = useSelector((state) => state.auth.accessToken);
@@ -69,16 +69,16 @@ export default function CreatePlaylistForm({ uriTracks }) {
 	};
 
 	return (
-		<div className="form">
-			<div className="form__wrapper">
+		<div className={style.form}>
+			<div className={style.form__wrapper}>
 				<h2>Create Playlist</h2>
 
-				<form className="form-playlist" onSubmit={handleSubmit}>
+				<form className={style.form__playlist} onSubmit={handleSubmit}>
 					<div className="input-group">
 						<input
 							label="Title"
 							placeholder="Title"
-							className="form-playlist__input"
+							className={style.form__playlist__input}
 							value={form.title}
 							id="title-playlist"
 							name="title"
@@ -92,7 +92,7 @@ export default function CreatePlaylistForm({ uriTracks }) {
 							type="textarea"
 							label="Description"
 							placeholder="Description"
-							className="form-playlist__input"
+							className={style.form__playlist__input}
 							value={form.description}
 							id="description-playlist"
 							name="description"
@@ -102,7 +102,7 @@ export default function CreatePlaylistForm({ uriTracks }) {
 						/>
 					</div>
 
-					<button type="submit" className="form-playlist__button">
+					<button type="submit" className={style.form__playlist__button}>
 						Create
 					</button>
 				</form>

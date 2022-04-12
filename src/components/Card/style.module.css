@@ -44,6 +44,6 @@
 	background-color: var(--lightgreen);
 }
 
-.card__button-icon {
+.card__button__icon {
 	margin-right: 3px;
 }
