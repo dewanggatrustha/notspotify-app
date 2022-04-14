@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import style from "./style.module.css";
+import { Flex, Image, Heading, Text, IconButton } from "@chakra-ui/react";
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
 	const [isSelected, setIsSelected] = useState(select);
@@ -10,27 +11,41 @@ const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
 	};
 
 	return (
-		<div className={style.card__wrapper}>
-			<div className={style.card__images}>
-				<img src={imagesUrl} alt={title} className={style.card__image} />
-			</div>
-			<div className={style.card__info}>
-				<h5>{title}</h5>
-				<p>{artist}</p>
-			</div>
-			<div className={style.button__wrapper}>
-				<button className={style.card__button} onClick={handleToggleSelect}>
-					<span className={style.card__button__icon}>
-						{isSelected ? (
-							<i className="fa-solid fa-trash-can"></i>
-						) : (
-							<i className="fa-solid fa-plus"></i>
-						)}
-					</span>
-					{isSelected ? "Deselect" : "Select"}
-				</button>
-			</div>
-		</div>
+		<Flex
+			min-w="280px"
+			p={5}
+			bgColor="whiteAlpha.50"
+			borderRadius="15"
+			_hover={{ bgColor: "whiteAlpha.100" }}
+		>
+			<Image borderRadius="15" boxSize="150px" src={imagesUrl} alt={title} />
+			<Flex
+				direction="column"
+				alignItems="baseline"
+				justifyContent="center"
+				ml={5}
+			>
+				<Flex w="130px" h="100%" direction="column" alignItems="baseline">
+					<Heading as="h2" color="white" fontSize="lg">
+						{title}
+					</Heading>
+					<Text color="white" fontSize="lg">
+						{artist}
+					</Text>
+				</Flex>
+				<Flex w="100%" alignItems="flex-end" justifyContent="flex-end">
+					<IconButton
+						aria-label="Select"
+						borderRadius="full"
+						size="sm"
+						icon={isSelected ? <FaTimes /> : <FaPlus />}
+						colorScheme={isSelected ? "red" : "green"}
+						_focus={{ boxShadow: "none" }}
+						onClick={handleToggleSelect}
+					/>
+				</Flex>
+			</Flex>
+		</Flex>
 	);
 };
 

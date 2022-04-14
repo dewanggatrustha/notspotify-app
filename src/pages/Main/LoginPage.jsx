@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import config from "../../lib/config";
 import { getUserProfile } from "../../lib/spotifyAPI";
 import { login } from "../../Redux/authSlice";
-import style from "./style.module.css";
+import { Flex, Button } from "@chakra-ui/react";
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const LoginPage = () => {
 		}
 	});
 
-	const getSpotifyLinkAuth = () => {
+	const getSpotifyAuth = () => {
 		const state = Date.now().toString();
 		const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 
@@ -41,15 +41,24 @@ const LoginPage = () => {
 	};
 
 	return (
-		<div className="home">
-			<div className={style.auth__content}>
-				<button className={style.auth__button}>
-					<a href={getSpotifyLinkAuth()}>
-						<i class="fa-brands fa-spotify"></i>LOG IN WITH SPOTIFY
-					</a>
-				</button>
-			</div>
-		</div>
+		<Flex
+			h="100vh"
+			alignItems="center"
+			justifyContent="center"
+			bgGradient="linear(var(--darkblue) 0%, var(--lightblack) 20%)"
+		>
+			<Button
+				as="a"
+				bgColor="green.500"
+				color="white"
+				_focus={{ boxShadow: "none" }}
+				_hover={{ bgColor: "green.400" }}
+				borderRadius="25"
+				href={getSpotifyAuth()}
+			>
+				Log In with Spotify
+			</Button>
+		</Flex>
 	);
 };
 

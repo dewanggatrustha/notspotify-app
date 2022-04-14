@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { addTracksToPlaylist, createPlaylist } from "../../lib/spotifyAPI";
-import style from "./style.module.css";
+import { toast } from "react-toastify";
+import {
+	Flex,
+	Heading,
+	FormControl,
+	Input,
+	Center,
+	Button,
+} from "@chakra-ui/react";
 
 export default function CreatePlaylistForm({ uriTracks }) {
 	const accessToken = useSelector((state) => state.auth.accessToken);
@@ -69,16 +76,20 @@ export default function CreatePlaylistForm({ uriTracks }) {
 	};
 
 	return (
-		<div className={style.form}>
-			<div className={style.form__wrapper}>
-				<h2>Create Playlist</h2>
+		<Center>
+			<Flex direction="column" pt={5} pb={5}>
+				<Heading as="h2" size="xl" color="white">
+					Create Playlist
+				</Heading>
 
-				<form className={style.form__playlist} onSubmit={handleSubmit}>
-					<div className="input-group">
-						<input
-							label="Title"
-							placeholder="Title"
-							className={style.form__playlist__input}
+				<form onSubmit={handleSubmit}>
+					<FormControl mt={5}>
+						<Input
+							w="400px"
+							placeholder="Add a title here"
+							bgColor="white"
+							focusBorderColor="green.400"
+							borderRadius="25"
 							value={form.title}
 							id="title-playlist"
 							name="title"
@@ -86,27 +97,35 @@ export default function CreatePlaylistForm({ uriTracks }) {
 							error={errorForm.title}
 							required
 						/>
-					</div>
-					<div className="input-group">
-						<input
-							type="textarea"
-							label="Description"
-							placeholder="Description"
-							className={style.form__playlist__input}
+					</FormControl>
+					<FormControl mt={5}>
+						<Input
+							w="400px"
+							placeholder="Add a description here"
+							bgColor="white"
+							focusBorderColor="green.400"
+							borderRadius="25"
 							value={form.description}
 							id="description-playlist"
 							name="description"
 							onChange={handleChange}
-							required
 							error={errorForm.description}
+							required
 						/>
-					</div>
-
-					<button type="submit" className={style.form__playlist__button}>
+					</FormControl>
+					<Button
+						bgColor="green.500"
+						color="white"
+						_focus={{ boxShadow: "none" }}
+						_hover={{ bgColor: "green.400" }}
+						borderRadius="25"
+						mt={5}
+						type="submit"
+					>
 						Create
-					</button>
+					</Button>
 				</form>
-			</div>
-		</div>
+			</Flex>
+		</Center>
 	);
 }

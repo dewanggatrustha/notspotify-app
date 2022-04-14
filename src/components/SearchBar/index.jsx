@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { searchTrack } from "../../lib/spotifyAPI";
-import style from "./style.module.css";
+import { toast } from "react-toastify";
+import {
+	Box,
+	Flex,
+	InputGroup,
+	Input,
+	InputLeftElement,
+	Button,
+} from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
 
 const SearchBar = ({ onSuccess }) => {
 	const accessToken = useSelector((state) => state.auth.accessToken);
@@ -27,18 +35,38 @@ const SearchBar = ({ onSuccess }) => {
 	};
 
 	return (
-		<form className={style.search} onSubmit={handleSubmit}>
-			<input
-				type="text"
-				placeholder="Search your favorite songs.."
-				className={style.search__input}
-				required
-				onChange={handleInput}
-			/>
-			<button className={style.search__button} type="submit">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</button>
-		</form>
+		<Box alignItems="center">
+			<form onSubmit={handleSubmit}>
+				<Flex>
+					<InputGroup>
+						<InputLeftElement
+							pointerEvents="none"
+							children={<FaSearch color="gray.300" />}
+						/>
+						<Input
+							w="400px"
+							placeholder="Search your Fav Songs..."
+							type="text"
+							bgColor="white"
+							focusBorderColor="green.400"
+							borderRadius="25"
+							onChange={handleInput}
+						/>
+					</InputGroup>
+					<Button
+						bgColor="green.500"
+						color="white"
+						_focus={{ boxShadow: "none" }}
+						_hover={{ bgColor: "green.400" }}
+						borderRadius="25"
+						ml={5}
+						type="submit"
+					>
+						Search
+					</Button>
+				</Flex>
+			</form>
+		</Box>
 	);
 };
 

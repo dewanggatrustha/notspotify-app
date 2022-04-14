@@ -19,18 +19,11 @@ body {
 		"Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: linear-gradient(var(--darkblue) 0%, var(--lightblack) 20%);
-	background-repeat: no-repeat;
-	min-height: 100vh;
 }
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
-}
-
-.container {
-	margin: 0 auto;
 }
 
 :root {

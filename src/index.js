@@ -6,13 +6,16 @@ import "react-toastify/dist/ReactToastify.css";
 import store from "./Redux/store";
 import App from "./App";
 import "./index.css";
+import { ChakraProvider } from "@chakra-ui/react";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
-		<ToastContainer />
+		<ChakraProvider>
+			<Provider store={store}>
+				<App />
+			</Provider>
+			<ToastContainer />
+		</ChakraProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
