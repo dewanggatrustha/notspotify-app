@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import store from "./Redux/store";
 import App from "./App";
 import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 ReactDOM.render(
 	<React.StrictMode>

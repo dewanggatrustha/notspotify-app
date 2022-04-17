@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { searchTrack } from "../../lib/spotifyAPI";
-import { toast } from "react-toastify";
+import React, { useState, ChangeEventHandler, FormEventHandler } from "react";
+import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
+import { searchTrack } from "../../lib/apiSpotify";
 import {
 	Box,
 	Flex,
@@ -11,26 +10,30 @@ import {
 	Button,
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-const SearchBar = ({ onSuccess }) => {
-	const accessToken = useSelector((state) => state.auth.accessToken);
+interface SearchBarProps {
+	onSuccess: (tracks: any[], text: string) => void;
+}
+
+const SearchBar = ({ onSuccess }: SearchBarProps) => {
+	const accessToken = useAppSelector((state) => state.auth.accessToken);
 
 	const [text, setText] = useState("");
 
-	const handleInput = (e) => {
+	const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
 		setText(e.target.value);
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault();
 
+		const response = await searchTrack(text, accessToken);
 		try {
-			const response = await searchTrack(text, accessToken);
-
 			const tracks = response.tracks.items;
-			onSuccess(tracks);
+			onSuccess(tracks, text);
 		} catch (e) {
-			toast.error(e);
+			toast.error("You need to search something..");
 		}
 	};
 

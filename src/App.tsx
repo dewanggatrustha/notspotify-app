@@ -4,13 +4,13 @@ import {
 	Route,
 	Redirect,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./Redux/hooks";
 import CreatePlaylist from "./pages/Playlist/CreatePlaylist";
 import LoginPage from "./pages/Main/LoginPage";
 import "./App.css";
 
 export default function App() {
-	const token = useSelector((state) => state.auth.accessToken);
+	const token = useAppSelector((state) => state.auth.accessToken);
 
 	return (
 		<div className="container">

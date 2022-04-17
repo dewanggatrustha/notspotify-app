@@ -2,7 +2,21 @@ import React, { useState } from "react";
 import { Flex, Image, Heading, Text, IconButton } from "@chakra-ui/react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
-const Card = ({ imagesUrl, title, artist, select, toggleSelect }) => {
+interface CardProps {
+	imagesUrl: string;
+	title: string;
+	artist: string;
+	select: boolean;
+	toggleSelect: () => void;
+}
+
+const Card = ({
+	imagesUrl,
+	title,
+	artist,
+	select,
+	toggleSelect,
+}: CardProps) => {
 	const [isSelected, setIsSelected] = useState(select);
 
 	const handleToggleSelect = () => {

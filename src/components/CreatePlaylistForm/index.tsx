@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { addTracksToPlaylist, createPlaylist } from "../../lib/spotifyAPI";
+import React, { useState, ChangeEventHandler } from "react";
+import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
+import { addTracksToPlaylist, createPlaylist } from "../../lib/apiSpotify";
 import { toast } from "react-toastify";
 import {
 	Flex,
@@ -11,21 +11,32 @@ import {
 	Button,
 } from "@chakra-ui/react";
 
-export default function CreatePlaylistForm({ uriTracks }) {
-	const accessToken = useSelector((state) => state.auth.accessToken);
-	const userId = useSelector((state) => state.auth.user.id);
+interface CreatePlaylistFormProps {
+	uriTracks: string[];
+}
 
-	const [form, setForm] = useState({
+interface InitialFormState {
+	title: string;
+	description: string;
+}
+
+const CreatePlaylistForm = ({ uriTracks }: CreatePlaylistFormProps) => {
+	const accessToken: string = useAppSelector(
+		(state) => state.auth.accessToken
+	);
+	const userId: any = useAppSelector((state) => state.auth.user?.id);
+
+	const [form, setForm] = useState<InitialFormState>({
 		title: "",
 		description: "",
 	});
 
-	const [errorForm, setErrorForm] = useState({
+	const [errorForm, setErrorForm] = useState<InitialFormState>({
 		title: "",
 		description: "",
 	});
 
-	const handleChange = (e) => {
+	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		const { name, value } = e.target;
 
 		setForm({ ...form, [name]: value });
@@ -33,9 +44,9 @@ export default function CreatePlaylistForm({ uriTracks }) {
 	};
 
 	const validateForm = () => {
-		let isValid = true;
+		let isValid: boolean = true;
 
-		if (form.title.length < 5) {
+		if (form.title.length < 10) {
 			setErrorForm({
 				...errorForm,
 				title: "Title must be at least 10 characters long",
@@ -46,7 +57,7 @@ export default function CreatePlaylistForm({ uriTracks }) {
 		return isValid;
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit: ChangeEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault();
 
 		if (validateForm()) {
@@ -69,8 +80,8 @@ export default function CreatePlaylistForm({ uriTracks }) {
 				toast.success("Playlist created successfully");
 
 				setForm({ title: "", description: "" });
-			} catch (error) {
-				toast.error(error);
+			} catch (e) {
+				toast.error("");
 			}
 		}
 	};
@@ -94,7 +105,6 @@ export default function CreatePlaylistForm({ uriTracks }) {
 							id="title-playlist"
 							name="title"
 							onChange={handleChange}
-							error={errorForm.title}
 							required
 						/>
 					</FormControl>
@@ -109,7 +119,6 @@ export default function CreatePlaylistForm({ uriTracks }) {
 							id="description-playlist"
 							name="description"
 							onChange={handleChange}
-							error={errorForm.description}
 							required
 						/>
 					</FormControl>
@@ -128,4 +137,6 @@ export default function CreatePlaylistForm({ uriTracks }) {
 			</Flex>
 		</Center>
 	);
-}
+};
+
+export default CreatePlaylistForm;

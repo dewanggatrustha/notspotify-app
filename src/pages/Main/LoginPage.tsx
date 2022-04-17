@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import config from "../../lib/config";
-import { getUserProfile } from "../../lib/spotifyAPI";
+import { toast } from "react-toastify";
+import { getUserProfile, getSpotifyAuth } from "../../lib/apiSpotify";
 import { login } from "../../Redux/authSlice";
 import { Flex, Button } from "@chakra-ui/react";
 
@@ -25,20 +24,13 @@ const LoginPage = () => {
 						})
 					);
 				} catch (e) {
-					toast.error(e);
+					toast.error("No Token Provided");
 				}
 			};
 
 			setUserProfile();
 		}
 	});
-
-	const getSpotifyAuth = () => {
-		const state = Date.now().toString();
-		const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-
-		return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
-	};
 
 	return (
 		<Flex
