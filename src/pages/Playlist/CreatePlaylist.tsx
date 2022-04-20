@@ -39,7 +39,7 @@ const CreatePlaylist = () => {
 				h="100vh"
 				direction="column"
 				alignItems="center"
-				bgGradient="linear(var(--darkblue) 0%, var(--lightblack) 20%)"
+				bgGradient="linear(purple.900 0%, gray.900 20%)"
 			>
 				<CreatePlaylistForm uriTracks={selectedTracksUri} />
 
