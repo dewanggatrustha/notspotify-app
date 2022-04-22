@@ -80,8 +80,10 @@ const CreatePlaylistForm = ({ uriTracks }: CreatePlaylistFormProps) => {
 				toast.success("Playlist created successfully");
 
 				setForm({ title: "", description: "" });
-			} catch (e) {
-				toast.error("");
+			} catch (error) {
+				if (error instanceof Error) {
+					toast.error(error.message);
+				}
 			}
 		}
 	};

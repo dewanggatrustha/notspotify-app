@@ -23,8 +23,10 @@ const LoginPage = () => {
 							user: response,
 						})
 					);
-				} catch (e) {
-					toast.error("No Token Provided");
+				} catch (error) {
+					if (error instanceof Error) {
+						toast.error(error.message);
+					}
 				}
 			};
 
