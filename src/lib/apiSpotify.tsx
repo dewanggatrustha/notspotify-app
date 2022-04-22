@@ -26,7 +26,9 @@ export const getSpotifyAuth = () => {
 	const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 	const redirectUri = `${window.location.protocol}//${window.location.host}`;
 
-	return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
+	return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&state=${state}&scope=${config.SPOTIFY_SCOPE.join(
+		"%20"
+	)}`;
 };
 
 export const getUserProfile = async (accessToken: string) => {
@@ -42,6 +44,18 @@ export const getUserProfile = async (accessToken: string) => {
 	return response.data;
 };
 
+export const getUserPlaylist = async (accessToken: string) => {
+	const requestOptions = {
+		headers: Headers(accessToken),
+	};
+
+	const response = await axios.get(
+		`${config.SPOTIFY_BASE_URL}/me/playlists?offset=6&limit=20`,
+		requestOptions
+	);
+
+	return response.data;
+};
 interface NewPlaylistState {
 	name: string;
 	description: string;
