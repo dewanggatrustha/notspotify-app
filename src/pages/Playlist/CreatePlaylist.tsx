@@ -3,6 +3,7 @@ import Card from "../../components/Card";
 import SearchBar from "../../components/SearchBar";
 import CreatePlaylistForm from "../../components/CreatePlaylistForm";
 import ProfileBar from "../../components/ProfileBar";
+import Layout from "../../components/Layout";
 import { Box, Flex, Grid, Divider } from "@chakra-ui/react";
 
 const CreatePlaylist = () => {
@@ -34,7 +35,7 @@ const CreatePlaylist = () => {
 		}
 	};
 	return (
-		<Box>
+		<Layout>
 			<Flex
 				h="100vh"
 				direction="column"
@@ -63,7 +64,7 @@ const CreatePlaylist = () => {
 					))}
 				</Grid>
 			</Flex>
-		</Box>
+		</Layout>
 	);
 };
 

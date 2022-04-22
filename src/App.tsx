@@ -7,13 +7,13 @@ import {
 import { useAppSelector } from "./Redux/hooks";
 import CreatePlaylist from "./pages/Playlist/CreatePlaylist";
 import LoginPage from "./pages/Main/LoginPage";
-import "./App.css";
+import SideBar from "./components/SideBar";
 
 export default function App() {
 	const token = useAppSelector((state) => state.auth.accessToken);
 
 	return (
-		<div className="container">
+		<>
 			<Router>
 				<Switch>
 					<Route path="/create-playlist">
@@ -28,6 +28,6 @@ export default function App() {
 					</Route>
 				</Switch>
 			</Router>
-		</div>
+		</>
 	);
 }
