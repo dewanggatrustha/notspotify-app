@@ -25,18 +25,3 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
-
-:root {
-	--white: #ffffff;
-	--white2: #959595;
-	--black: #000000;
-	--lightblack: #121212;
-	--darkgray: #181818;
-	--gray: #535353;
-	--lightgray: #282828;
-	--green: #1db954;
-	--lightgreen: #1ed760;
-	--purple: #4623a5;
-	--darkpurple: #24073f;
-	--darkblue: #22135e;
-}
