@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Image, Heading, Text, IconButton } from "@chakra-ui/react";
+import { Flex, Image, Heading, Text, Button } from "@chakra-ui/react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
 interface CardProps {
@@ -48,7 +48,7 @@ const Card = ({
 					</Text>
 				</Flex>
 				<Flex w="100%" alignItems="flex-end" justifyContent="flex-end">
-					<IconButton
+					{/* <IconButton
 						aria-label="Select"
 						borderRadius="full"
 						size="sm"
@@ -56,7 +56,17 @@ const Card = ({
 						colorScheme={isSelected ? "red" : "green"}
 						_focus={{ boxShadow: "none" }}
 						onClick={handleToggleSelect}
-					/>
+					/> */}
+					<Button
+						size="sm"
+						borderRadius="full"
+						rightIcon={isSelected ? <FaTimes /> : <FaPlus />}
+						colorScheme={isSelected ? "red" : "green"}
+						_focus={{ boxShadow: "none" }}
+						onClick={handleToggleSelect}
+					>
+						{isSelected ? "Deselect" : "Select"}
+					</Button>
 				</Flex>
 			</Flex>
 		</Flex>
