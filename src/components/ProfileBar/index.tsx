@@ -23,11 +23,12 @@ const ProfileBar = () => {
 
 	useEffect(() => {
 		getUserProfile(token);
-	}, [dispatch, token]);
+	}, [token]);
 
 	const handleProfile = () => {
 		window.open(userProfile?.external_urls.spotify);
 	};
+
 	const handleLogout = () => {
 		dispatch(logout());
 	};
@@ -39,10 +40,10 @@ const ProfileBar = () => {
 					as={Button}
 					rightIcon={<FaAngleDown />}
 					color="white"
-					bgColor="gray.800"
+					bgColor="black"
 					rounded={25}
 					_focus={{ boxShadow: "none" }}
-					_active={{ bg: "gray.800" }}
+					_active={{ bg: "black" }}
 					_hover={{ bg: "gray.700" }}
 				>
 					<Flex alignItems="center">
@@ -60,7 +61,7 @@ const ProfileBar = () => {
 				</MenuButton>
 				<MenuList
 					color="white"
-					bgColor="gray.800"
+					bgColor="black"
 					rounded={10}
 					_active={{ bg: "gray.800" }}
 				>
