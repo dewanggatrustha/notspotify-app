@@ -4,7 +4,7 @@ import SearchBar from "../../components/SearchBar";
 import CreatePlaylistForm from "../../components/CreatePlaylistForm";
 import ProfileBar from "../../components/ProfileBar";
 import Layout from "../../components/Layout";
-import { Box, Flex, Grid, Divider } from "@chakra-ui/react";
+import { Flex, Grid, Divider, Box, Text } from "@chakra-ui/react";
 
 const CreatePlaylist = () => {
 	const [tracks, setTracks] = useState<any[]>([]);
@@ -37,7 +37,7 @@ const CreatePlaylist = () => {
 	return (
 		<Layout>
 			<Flex
-				h="100vh"
+				h="full"
 				direction="column"
 				alignItems="center"
 				bgGradient="linear(purple.900 0%, gray.900 20%)"
@@ -51,18 +51,27 @@ const CreatePlaylist = () => {
 
 				<SearchBar onSuccess={(tracks) => onSuccessSearch(tracks)} />
 
-				<Grid templateColumns="repeat(4, 1fr)" gap={6} mt={10} mb={10}>
-					{tracks.map((track) => (
-						<Card
-							key={track.id}
-							imagesUrl={track.album.images[0].url}
-							title={track.name}
-							artist={track.artists[0].name}
-							toggleSelect={() => toggleSelect(track)}
-							select={selectedTracksUri.includes(track.uri)}
-						/>
-					))}
-				</Grid>
+				{tracks.length === 0 && (
+					<Box h="45vh">
+						<Text fontSize="lg" color="white" mt={10}>
+							No tracks
+						</Text>
+					</Box>
+				)}
+				<Box>
+					<Grid templateColumns="repeat(4, 1fr)" gap={6} mt={10} mb={10}>
+						{tracks.map((track) => (
+							<Card
+								key={track.id}
+								imagesUrl={track.album.images[0].url}
+								title={track.name}
+								artist={track.artists[0].name}
+								toggleSelect={() => toggleSelect(track)}
+								select={selectedTracksUri.includes(track.uri)}
+							/>
+						))}
+					</Grid>
+				</Box>
 			</Flex>
 		</Layout>
 	);

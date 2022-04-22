@@ -48,7 +48,7 @@ const SideBar = () => {
 			</VStack>
 
 			<Box ml={10} mt={10}>
-				<Link as={ReactLink} to="/home">
+				<Link as={ReactLink} to="#">
 					<Flex alignItems="center" mb={5} cursor="pointer">
 						<FaHome color="white" />
 						<Text
