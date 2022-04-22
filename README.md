@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# NotSpotify Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
+<br>
+<p align="center">
+  <a href="https://notspotify-app.vercel.app">
+    <img src="https://user-images.githubusercontent.com/57487611/164754448-809a21bc-28ff-4412-9df5-df827f6dd014.svg" width="60%">
+  </a>
+</p>
+<br>
+NotSpotify is a a web application that uses the Spotify Developer API. This Application and repo was created during Generasi GIGIH 2.0 Program help by <a href="https://www.anakbangsabisa.org/">Yayasan Anak Bangsa Bisa</a> and GoTo Group's.
 
-## Available Scripts
+### Features
+  - Login with Spotify account
+  - Display User Profile (Images and Name)
+  - Create new playlist with selected track's
+  - Search your favorite tracks
+  - Track details
+  - List owned playlist in the SideBar
 
-In the project directory, you can run:
+### Stacks
+  - Create-react-app, React, Typescript
+  - Styling: Chakra UI, FontAwesome Icons
+  - State management: Redux
+  - Testing: Jest, Testing-Library, MSW
+  - Linter: ESLint
+  - Deployment: Vercel
 
-### `npm start`
+### Production
+> https://notspotify-app.vercel.app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br>
+## How to run on local
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Clone the repo project
 
-### `npm test`
+    ```bash
+    git clone https://github.com/dewanggatrustha/notspotify-app.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Go to the project folder
 
-### `npm run build`
+    ```bash
+    cd notspotify-app
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Install required dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Setup environment variables
 
-### `npm run eject`
+    Create file with name `.env.local` and add the following content:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```env
+    REACT_APP_SPOTIFY_CLIENT_ID = {Add your own client ID here}
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Run the server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```bash
+    npm start
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Open <http://localhost:3000> with your browser to see the result.
 
-## Learn More
+## How to use this app
+Currently NotSpotify App only can run  on desktop because my styling not responsive😿. Before you use this app, make sure you already have a <a href="https://www.spotify.com/">Spotify</a> Account to create the API.
+<br><br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Log in to the app
+1. So the first to do click the "Get Started" Button
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<table>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/57487611/164757020-589d98f7-19c0-4a94-9c22-3b6a2cc74f33.png" width="80%">
+    </td>
+  </tr>
+</table>
 
-### Code Splitting
+2. After you click the button, you will get the Spotify Authentication page prompt to connect the account to the NotSpotify App. Don't forget to click "Agree" button.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<table>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/57487611/164757479-6a24766a-138b-4eb9-b974-05bfe6866e41.png" width="80%">
+    </td>
+  </tr>
+</table>
 
-### Analyzing the Bundle Size
+3. AFter you success to connect your Spotify Account, you will be redirected to the Create Playlist page and finally you can use the App YEAY!🥳
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<table>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/57487611/164757611-35c20aef-e14f-4e2c-b25e-129074e30c8b.png" width="80%">
+    </td>
+  </tr>
+</table>
